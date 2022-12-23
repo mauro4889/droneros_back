@@ -22,11 +22,12 @@ export class LoginService {
                 throw isValid
             }
 
-            const {id, firstname} = data
+            const {id, firstname, role} = data
             const token = JWTService.generate({
                 id, 
                 email,
-                firstname
+                firstname,
+                role
             })
 
             return{
@@ -34,7 +35,8 @@ export class LoginService {
                 token,
                 data: {
                     email,
-                    firstname
+                    firstname,
+                    role
                 }
             }
 
