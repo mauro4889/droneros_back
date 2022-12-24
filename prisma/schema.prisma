@@ -23,6 +23,7 @@ model User{
   firstname String
   lastname String
   role Role @default(USER)
+  validated Boolean @default(false)
 
   address Address[]
   resume Resume[]
