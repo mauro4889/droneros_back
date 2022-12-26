@@ -1,27 +1,32 @@
-import { createTransport } from 'nodemailer'
+import nodemailer from 'nodemailer'
 
-export class MailerServices {
-    constructor() { }
-
-    static async send(message: string, to: string) {
-        try {
-            const transporter = createTransport({
-                service: 'gmail',
-                auth: {
-                    user: process.env.EMAIL,
-                    pass: process.env.PASS
-                }
-            })
-            const mail = await transporter.sendMail({
-                to,
-                subject: 'TEST',
-                html: message,
-            })
-
-            return mail
-
-        } catch (error) {
-            console.log(error)
+const Email = async (options: any) => {
+    let transpoter = nodemailer.createTransport({
+        service: 'gmail', //i use outlook
+        auth: {
+            user: process.env.EMAIL, // email
+            pass: process.env.PASS, //password
+        },
+    });
+    transpoter.sendMail(options, (err, info) => {
+        if (err) {
+            console.log(err);
+            return;
         }
+    });
+};
+
+export const EmailSend = async ({ email, firstname, url }: any) => {
+    console.log(email, firstname, url)
+    const options = {
+        from: `${process.env.USER}`,
+        to: email,
+        subjet: 'DRONEROS',
+        html: `
+            <h2>Gracias ${firstname} por crearte una cuenta</h2>
+			Ingresa a este link para validar tu correo: <b>{${url}}</b>
+        `
     }
+
+    Email(options)
 }
