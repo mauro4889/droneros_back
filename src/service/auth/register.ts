@@ -19,8 +19,6 @@ export class RegisterService{
             const validateToken = JWTService.generate({ email, id: user?.id }, '15m')
             const url = `http://localhost:3000/auth/validate/${validateToken}`
 
-            console.log(data)
-
             EmailSend({email, firstname, url})
             
             return user

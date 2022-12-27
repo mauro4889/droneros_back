@@ -17,9 +17,9 @@ const Email = async (options: any) => {
 };
 
 export const EmailSend = async ({ email, firstname, url }: any) => {
-    console.log(email, firstname, url)
+    
     const options = {
-        from: `${process.env.USER}`,
+        from: `${process.env.EMAIL}`,
         to: email,
         subjet: 'DRONEROS',
         html: `
