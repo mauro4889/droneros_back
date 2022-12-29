@@ -7,10 +7,11 @@ import Handlebars from 'handlebars'
 export class ValidateEmailService {
     constructor() { }
 
-    static async validateEmail(token: string) {
+    static async validateEmail(token: any) {
         try {
-            const payload = JWTService.verify(token);
-
+			console.log(token)
+            const payload = await JWTService.verify(token);
+			
 			console.log(payload)
 
             const { data } = await UserGetOneService.getOneById(payload.id);
@@ -75,7 +76,7 @@ export class ValidateEmailService {
 			Hubo un error para validar tu correo, volve a intentarlo
 			</body>
 			</html>`);
-
+			console.log(error)
             return mail({});
         }
     }
