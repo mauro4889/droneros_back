@@ -6,14 +6,8 @@ export class RegisterController{
     constructor(){}
 
     static async register(req: Request, res: Response){
-        const {email, password, firstname, lastname} = req.body
 
-        const created = await RegisterService.register({
-            email,
-            password,
-            firstname,
-            lastname
-        })
+        const created = await RegisterService.register(req.body)
 
         res.status(200).send({
             success: true,

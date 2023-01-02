@@ -1,3 +1,4 @@
+import { Prisma } from "@prisma/client";
 import { prisma } from "../..";
 import {UserRoles} from "../../entities/roles.enum"
 
@@ -5,15 +6,16 @@ import {UserRoles} from "../../entities/roles.enum"
 export class UserCreate{
     constructor(){}
 
-    static async create({email, password, firstname, lastname }: any){
+    static async create(userData: Prisma.UserCreateInput){
         try {
             const created = await prisma.user.create({
                 data:{
-                    email,
-                    password,
-                    firstname,
-                    lastname,
-                    role: UserRoles.USER
+                    ...userData
+                },
+                select:{
+                    id: true,
+                    firstname: true,
+                    role: true
                 }
             })
 

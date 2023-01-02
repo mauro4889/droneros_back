@@ -15,7 +15,7 @@ export class RegisterService{
 
             const salt = await genSalt(10)
             const encrypted = await hash(password, salt)
-            const {user} = await UserCreate.create({email, password: encrypted, firstname, lastname})
+            const {user} = await UserCreate.create({...data, password: encrypted})
             const validateToken = JWTService.generate({ email, id: user?.id }, '15m')
             const url = `http://localhost:3000/auth/validate/${validateToken}`
 
