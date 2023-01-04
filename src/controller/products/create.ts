@@ -6,7 +6,7 @@ export class ProductsCreateController{
     constructor (){}
 
     static async create(req: Request, res: Response){
-        const {name, description, price, stock, category} = req.body
+        const {name, description, price, stock, img, category} = req.body
         
 
         const created = await ProductsCreateService.create({
@@ -14,6 +14,7 @@ export class ProductsCreateController{
             description,
             price,
             stock,
+            img,
             category
         })
 

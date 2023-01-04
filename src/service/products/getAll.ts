@@ -8,7 +8,15 @@ export class GetAllProductsService{
 
     static async getAll(){
         try {
-            const data = await prisma.products.findMany()
+            const data = await prisma.products.findMany({
+                include:{
+                    category: {
+                        select:{
+                            categoryName: true
+                        }
+                    }
+                }
+            })
 
             return {success: true, data}
         } catch (error) {

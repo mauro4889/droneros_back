@@ -6,7 +6,7 @@ import { GetCategoryByName } from "../category/getId"
 export class ProductsCreateService{
     constructor(){}
 
-    static async create({name, description, price, stock, category}: any){
+    static async create({name, description, price, stock, img, categoryId}: any){
         try {
             const created = await prisma.products.create({
                 data:{
@@ -14,8 +14,9 @@ export class ProductsCreateService{
                     description,
                     price,
                     stock,
+                    img,
                     category:{
-                        connect: {id: category}
+                        connect: {id: categoryId}
                     }
                 }
             })
