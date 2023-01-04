@@ -15,7 +15,8 @@ router.post('/', isAdmin, ProductsCreateController.create)
 router.get('/:id', isAdmin, isUser, ProductsGetByIdController.getOneById)
 router.patch('/:id', isAdmin, ProductsUpdateController.update)
 router.delete('/:id', isAdmin, ProductsDeleteController.delete)
-router.get('/', GetAllProductsController.getAll)
+router.get('/', isAdmin, GetAllProductsController.getAll)
+router.get('/getbyname', isAdmin, ProductsGetByIdController.getByName)
 
 
 export default router

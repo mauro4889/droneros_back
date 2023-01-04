@@ -6,8 +6,7 @@ export class ProductsCreateController{
     constructor (){}
 
     static async create(req: Request, res: Response){
-        const {name, description, price, stock, img, category} = req.body
-        
+        const {name, description, price, stock, img, categoryId} = req.body
 
         const created = await ProductsCreateService.create({
             name,
@@ -15,7 +14,7 @@ export class ProductsCreateController{
             price,
             stock,
             img,
-            category
+            categoryId
         })
 
         res.status(created.success ? 200 : 400).send(created)

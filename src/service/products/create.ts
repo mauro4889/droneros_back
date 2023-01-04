@@ -6,7 +6,7 @@ import { GetCategoryByName } from "../category/getId"
 export class ProductsCreateService{
     constructor(){}
 
-    static async create({name, description, price, stock, img, categoryId}: any){
+    static async create({name, description, price, stock, img, category, categoryId}: any){
         try {
             const created = await prisma.products.create({
                 data:{

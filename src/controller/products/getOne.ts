@@ -12,4 +12,11 @@ export class ProductsGetByIdController{
 
         res.status(data.success ? 200 : 400).send(data)
     }
+
+    static async getByName(req: Request, res: Response){
+        const data = await ProductsGetByIdService.getByName(req.body)
+
+        res.status(data.success ? 200 : 400).send(data)
+    }
+    
 }
