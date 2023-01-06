@@ -8,7 +8,7 @@ export class CreateCategoryController{
 
     static async create(req: Request, res: Response){
         const {categoryName} = req.body
-
+        
         const created = await CreateCategoryService.create(categoryName)
 
         res.status(200).send({

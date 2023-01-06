@@ -6,6 +6,7 @@ export class CreateCategoryService{
     constructor(){}
 
     static async create(categoryName: any){
+        
         try {
             const created = await prisma.category.create({
                 data:{
