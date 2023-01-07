@@ -4,11 +4,13 @@ import { prisma } from "../..";
 export class UpdateCategoryService{
     constructor(){}
 
-    static async update({id, data}: any){
+    static async update(id: number, data: any){
         try {
             const updatedCategory = await prisma.category.update({
                 where: {id},
-                data
+                data:{
+                    categoryName: data
+                }
             })
 
             return {success: true, updatedCategory}

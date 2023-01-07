@@ -5,7 +5,7 @@ import { prisma } from "../..";
 export class DeleteCategotyService{
     constructor(){}
 
-    static async delete(id: any){
+    static async delete(id: number){
         try {
             const deleted = await prisma.category.delete({where: {id}})
 

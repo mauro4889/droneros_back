@@ -7,6 +7,11 @@ export class UpdateCategoryController {
 
     static async update (req: Request, res: Response){
 
-        const updated = await UpdateCategoryService.update(req.params.id, req.body)
+        const {categoryName} = req.body
+        const {id} = req.params
+
+        const updated = await UpdateCategoryService.update(+id, categoryName.toUpperCase())
+
+        res.status(updated.success ? 200 : 400).send(updated)
     }
 }
