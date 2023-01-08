@@ -8,7 +8,7 @@ export class GetAllProductsController{
 
     static async getAll(req: Request, res: Response){
         const data = await GetAllProductsService.getAll()
-
+        
         res.status(data.success ? 200 : 400).send(data)
     }
 }
