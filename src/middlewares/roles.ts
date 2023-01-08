@@ -10,9 +10,6 @@ export const isAdmin = async (req: any, res: Response, next: NextFunction)=> {
 
         const {role} = JWTService.verify(token)
         
-        if (role !== "ADMIN"){
-            throw 'No tienes permisios'
-        }
 
         next()
     } catch (error) {
