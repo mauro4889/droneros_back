@@ -9,14 +9,13 @@ import { isAdmin, isUser } from "../middlewares/roles";
 
 
 const router = Router()
-router.use(authenticate)
 
-router.post('/', isAdmin, ProductsCreateController.create)
+router.post('/', authenticate, isAdmin, ProductsCreateController.create)
 router.get('/:id', isAdmin, isUser, ProductsGetByIdController.getOneById)
-router.patch('/:id', isAdmin, ProductsUpdateController.update)
-router.delete('/:id', isAdmin, ProductsDeleteController.delete)
-router.get('/', isAdmin, GetAllProductsController.getAll)
-router.get('/getbyname', isAdmin, ProductsGetByIdController.getByName)
+router.patch('/:id', authenticate, isAdmin, ProductsUpdateController.update)
+router.delete('/:id', authenticate, isAdmin, ProductsDeleteController.delete)
+router.get('/', GetAllProductsController.getAll)
+router.get('/getbyname', ProductsGetByIdController.getByName)
 
 
 export default router
