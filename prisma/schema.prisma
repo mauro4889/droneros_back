@@ -69,10 +69,12 @@ model Resume{
   date DateTime   @default(now())
   quantity Int
   totalPrice Int
-
+  
   
   createdBy User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
   products Products[]
 }
+
+
 
