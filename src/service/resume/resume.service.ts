@@ -8,7 +8,8 @@ export class ResumseService{
         try {
             const created = await prisma.resume.create({
                 include:{
-                    createdBy: true
+                    createdBy: true,
+                    products: true
                 },
                 data:{
                     quantity,
@@ -17,9 +18,7 @@ export class ResumseService{
                         connect:{id: user}
                     },
                     products:{
-                        create:[
-                            products
-                        ]
+                        connect: products.map((product: any)=> ({id: product.id}))
                     }
                 }
             })

@@ -9,7 +9,6 @@ export class ResumeController{
     static async create(req: any, res: Response){
         const {quantity, totalPrice, products} = req.body
         const {user} = req
-
         const created = await ResumseService.created({
             quantity,
             totalPrice,

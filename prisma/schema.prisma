@@ -51,7 +51,7 @@ model Products{
 
   category Category @relation(fields: [categoryId], references: [id])
   categoryId Int
-  resume Resume[]
+  resume ResumeToProducts[]
 }
 
 model Category{
@@ -64,7 +64,7 @@ model Category{
 
 
 model Resume{
-  id Int @id @default(autoincrement())
+  id String @id @default(uuid())
 
   date DateTime   @default(now())
   quantity Int
@@ -73,7 +73,16 @@ model Resume{
   
   createdBy User  @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId String
-  products Products[]
+  products ResumeToProducts[]
+}
+
+model ResumeToProducts{
+  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  resumeId String
+  products Products @relation(fields: [productsId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  productsId String
+
+  @@id([resumeId, productsId])
 }
 
 
