@@ -18,7 +18,15 @@ export class ResumseService{
                         connect:{id: user}
                     },
                     products:{
-                        connect: products.map((product: any)=> ({id: product.id}))
+                        create: products.map(({id, name, price}: any)=>({
+                            name,
+                            price,
+                            products: {
+                                connect: {
+                                    id
+                                }
+                            }
+                        }))
                     }
                 }
             })
@@ -26,6 +34,20 @@ export class ResumseService{
         } catch (error) {
             console.log({error})
             return { sucess: false, error: 'Hubo un error' };
+        }
+    }
+
+    static async getAll() {
+        try {
+            const data = await prisma.resume.findMany({
+                include:{
+                    products: true
+                }
+            })
+            return {success: true, data}
+        } catch (error) {
+            console.log(error)
+            return {success: false, error: 'Hubo un error'}
         }
     }
 }

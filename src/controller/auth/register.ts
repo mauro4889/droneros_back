@@ -9,10 +9,6 @@ export class RegisterController{
 
         const created = await RegisterService.register(req.body)
 
-        res.status(200).send({
-            success: true,
-            created
-        })
-
+        res.status(created ? 200 : 400).send(created)
     }
 }

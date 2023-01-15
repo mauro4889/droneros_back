@@ -8,8 +8,8 @@ export class LoginController{
 
     static async login(req: Request, res: Response){
         const {email, password} = req.body
-
-        const {token, data} = await LoginService.login({email, password})
+        
+        const {token, data} = await LoginService.login({email: email.toLowerCase(), password})
 
         res.status(200).send({
             success: true,

@@ -14,7 +14,7 @@ export class UserUpdateService{
 
             const updated = await prisma.user.update({
                 where: {id},
-                data: {...data}
+                data
             })
 
             return {success: true, updated}

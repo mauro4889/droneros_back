@@ -15,46 +15,37 @@ enum Role {
   USER
 }
 
-model User{
+model User {
   id String @id @default(uuid())
 
-  email String @unique
-  password String @default("")
+  email     String  @unique
+  password  String  @default("")
   firstname String
-  lastname String
-  role Role @default(USER)
+  lastname  String
+  role      Role    @default(USER)
   validated Boolean @default(false)
+  city      String
+  street    String
+  cp        Int
 
-  address Address[]
-  resume Resume[]
+  resume  Resume[]
 }
 
-model Address{
-  id Int @id @default(autoincrement())
-
-  city String
-  street String
-  cp Int
-
-  addressUser User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
-}
-
-model Products{
+model Products {
   id String @id @default(uuid())
 
-  name String
+  name        String
   description String
-  price Int
-  stock Int
-  img String
+  price       Int
+  stock       Int
+  img         String
 
-  category Category @relation(fields: [categoryId], references: [id])
+  category   Category           @relation(fields: [categoryId], references: [id])
   categoryId Int
-  resume ResumeToProducts[]
+  resume     ResumeToProducts[]
 }
 
-model Category{
+model Category {
   id Int @id @default(autoincrement())
 
   categoryName String @unique
@@ -62,28 +53,25 @@ model Category{
   products Products[]
 }
 
-
-model Resume{
+model Resume {
   id String @id @default(uuid())
 
-  date DateTime   @default(now())
-  quantity Int
+  date       DateTime @default(now())
+  quantity   Int
   totalPrice Int
-  
-  
-  createdBy User  @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
-  products ResumeToProducts[]
+
+  createdBy User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+  products  ResumeToProducts[]
 }
 
-model ResumeToProducts{
-  resume Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  resumeId String
-  products Products @relation(fields: [productsId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+model ResumeToProducts {
+  resume     Resume   @relation(fields: [resumeId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  resumeId   String
+  products   Products @relation(fields: [productsId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   productsId String
+  name       String
+  price      Int
 
   @@id([resumeId, productsId])
 }
-
-
-

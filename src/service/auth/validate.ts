@@ -9,20 +9,16 @@ export class ValidateEmailService {
 
     static async validateEmail(token: any) {
         try {
-			console.log(token)
+
             const payload = await JWTService.verify(token);
-			
-			console.log(payload)
 
             const { data } = await UserGetOneService.getOneById(payload.id);
 
-            console.log(data)
-
-            if (!data) {
-                return {
-                    message: 'El token que estás usando es inválido',
-                };
-            }
+			if (!data) {
+				return {
+					message: 'El token que estás usando es inválido',
+				};
+			}
 
             if (data.validated) {
                 const mail = Handlebars.compile(`<!DOCTYPE html>

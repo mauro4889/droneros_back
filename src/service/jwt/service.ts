@@ -4,7 +4,7 @@ export class JWTService{
     constructor(){}
 
     static  generate(payload: any, expiresIn?: string){
-        return jwt.sign(payload, process.env.JWT_SECRET!, {expiresIn: expiresIn ?? '59m'})
+        return jwt.sign(payload, process.env.JWT_SECRET!, {expiresIn: expiresIn ?? '23h'})
     }
 
     static verify(token: string){

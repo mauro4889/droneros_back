@@ -9,7 +9,7 @@ export class EmailUserService{
             const data = await prisma.user.findUnique({
                 where: {email}
             })
-
+            
             if (!data){
                 throw data
             }

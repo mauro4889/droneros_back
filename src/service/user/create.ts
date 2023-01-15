@@ -6,7 +6,7 @@ import {UserRoles} from "../../entities/roles.enum"
 export class UserCreate{
     constructor(){}
 
-    static async create(userData: Prisma.UserCreateInput){
+    static async create(userData: any){
         try {
             const created = await prisma.user.create({
                 data:{
@@ -18,7 +18,7 @@ export class UserCreate{
                     role: true
                 }
             })
-
+            console.log(created)
             return {success: true, user: created}
             
         } catch (error) {

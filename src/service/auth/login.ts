@@ -9,9 +9,10 @@ export class LoginService {
     constructor(){}
 
     static async login({email, password}: any){
+        
         try {
             const {data} = await EmailUserService.getOneByEmail(email)
-            console.log(data)
+
             if (!data){
                 throw data
             }
@@ -22,12 +23,12 @@ export class LoginService {
                 throw isValid
             }
 
-            const {id, firstname, role} = data
+            const {id, firstname, role, validated, city, street, cp} = data
             const token = JWTService.generate({
                 id, 
                 email,
                 firstname,
-                role
+                role,
             })
 
             return{
@@ -36,7 +37,11 @@ export class LoginService {
                 data: {
                     email,
                     firstname,
-                    role
+                    role,
+                    validated,
+                    city,
+                    street,
+                    cp
                 }
             }
 

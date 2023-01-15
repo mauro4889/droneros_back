@@ -12,7 +12,6 @@ export class ProductGetForService{
                     products: true
                 }
             })
-            console.log(data)
             return {success: true, data}
         } catch (error) {
             console.log(error)

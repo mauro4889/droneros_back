@@ -8,5 +8,5 @@ const router = Router()
 router.use(authenticate)
 
 router.post('/', ResumeController.create)
-
+router.get('/', ResumeController.getAll)
 export default router

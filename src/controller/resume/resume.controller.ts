@@ -18,4 +18,10 @@ export class ResumeController{
 
         res.status(created.success ? 200 : 400).send(created)
     }
+
+    static async getAll(req: Request, res: Response){
+        const data = await ResumseService.getAll()
+
+        res.status(data.success ? 200 : 400).send(data)
+    }
 }
