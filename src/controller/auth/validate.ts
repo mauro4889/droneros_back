@@ -10,7 +10,7 @@ export class ValidateEmailController{
         const {token} = req.params
 
         const validated = await ValidateEmailService.validateEmail(token)
-        res.redirect('http://localhost:3000/login')
+        res.redirect('https://dronerosback-production.up.railway.app/login')
         res.status(200).send({
             success: true,
             validated
