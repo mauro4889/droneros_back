@@ -36,7 +36,7 @@ export class RegisterService{
 
             const validateToken = JWTService.generate({ email, id: user?.id }, '15m')
 
-            const url = `http://localhost:3002/auth/validate/${validateToken}`
+            const url = `https://dronerosback-production.up.railway.app/auth/validate/${validateToken}`
             
             EmailSend({email, firstname, url})
             
