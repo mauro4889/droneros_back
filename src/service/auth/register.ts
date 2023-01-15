@@ -13,7 +13,7 @@ export class RegisterService{
     static async register(data: any){
         
         try {
-            const {email, password, firstname, lastname, role, validated, city, street, cp} = data.data
+            const {email, password, firstname, lastname, role, validated, city, street, cp} = data
 
             const candidate = await getOneByEmailService.getOneByEmail(email)
 
